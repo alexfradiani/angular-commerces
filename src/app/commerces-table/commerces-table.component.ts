@@ -43,15 +43,18 @@ export class CommercesTableComponent
     'promo_code',
   ];
   public commercesCount: number = 0;
+  public querySize: number = 100;
   public noData: Commerce[] = [<Commerce>{}];
   dataSource = new MatTableDataSource(this.noData);
-  public loading: boolean = true;
+  public loading: boolean;
   public defaultSort: Sort = { active: 'product_name', direction: 'asc' };
 
   public error$?: Observable<boolean>;
   private subscription: Subscription = new Subscription();
 
-  constructor(public store: Store<GlobalState>) {}
+  constructor(public store: Store<GlobalState>) {
+    this.loading = true;
+  }
 
   public ngOnInit(): void {
     // apply selector for commerces in store
@@ -87,12 +90,6 @@ export class CommercesTableComponent
     let sort$ = this.sort.sortChange.pipe(
       tap(() => (this.paginator.pageIndex = 0))
     );
-
-    this.subscription.add(
-      merge(sort$, this.paginator.page)
-        .pipe(tap(() => this.loadCommerces()))
-        .subscribe()
-    );
   }
 
   private loadCommerces(): void {
@@ -103,9 +100,18 @@ export class CommercesTableComponent
           pageSize: this.paginator.pageSize,
           sortDirection: this.sort.direction,
           sortField: this.sort.active,
+          querySize: this.querySize,
         },
       })
     );
+  }
+
+  public onQuerySizeChanged(value: string) {
+    this.querySize = parseInt(value);
+  }
+
+  public onNewQuery() {
+    this.loadCommerces();
   }
 
   public ngOnDestroy(): void {

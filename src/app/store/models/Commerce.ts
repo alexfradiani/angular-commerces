@@ -18,8 +18,9 @@ export interface CommercesResponse {
 
 // Parameters type for commerce service requests
 export interface CommercesParams {
-  sortDirection: 'asc' | 'desc' | '';
-  sortField: string;
-  pageIndex: number;
-  pageSize: number;
+  sortDirection?: 'asc' | 'desc' | '';
+  sortField?: string;
+  pageIndex?: number;
+  pageSize?: number;
+  querySize: number;
 }

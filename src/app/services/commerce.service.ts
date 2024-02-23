@@ -11,13 +11,15 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class CommerceService {
-  private apiUrl = 'https://random-data-api.com/api/commerce/random_commerce';
+  // original random-data service: currently has CORS issues
+  // private apiUrl = 'https://random-data-api.com/api/commerce/random_commerce';
+
+  private apiUrl = 'http://localhost:3000/random_commerce';
   constructor(private http: HttpClient) {}
 
   // Perform http request according to params from table component
   public getCommerces(params: CommercesParams): Observable<CommercesResponse> {
-    // TODO: incldude size query parameter: ?size=100
-    const options = { params: new HttpParams().set('size', 100) };
+    const options = { params: new HttpParams().set('size', params.querySize) };
     return this.http
       .get<Commerce[]>(this.apiUrl, options)
       .pipe(map((commerces: Commerce[]) => ({ commerces: commerces })));

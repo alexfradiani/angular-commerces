@@ -1,7 +1,18 @@
 <div class="commerces-content">
   <div class="table-header">
     <div class="dc-h3 header">
-      Commerces: ({{commercesCount}})
+      Current Commerces: {{commercesCount}}
+    </div>
+    <div class="query-select">
+      <span>Load new random group:</span>
+      <select #sizeSelection (change)="onQuerySizeChanged(sizeSelection.value)">
+        <option default>100</option>
+        <option>200</option>
+        <option>300</option>
+        <option>400</option>
+        <option>500</option>
+      </select>
+      <button (click)="onNewQuery()">Get!</button>
     </div>
   </div>
   <div class="table-container">
@@ -70,6 +81,6 @@
       </ng-container>
     </mat-table>
 
-    <mat-paginator [length]="commercesCount" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+    <mat-paginator [length]="commercesCount" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
   </div>
 </div>
