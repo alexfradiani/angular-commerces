@@ -1,0 +1,75 @@
+<div class="commerces-content">
+  <div class="table-header">
+    <div class="dc-h3 header">
+      Commerces: ({{commercesCount}})
+    </div>
+  </div>
+  <div class="table-container">
+    <mat-table [dataSource]="dataSource" matSort matSortDisableClear="true" [matSortActive]="defaultSort.active"
+      [matSortDirection]="defaultSort.direction">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell class="dc-content" *matCellDef="let element" data-label="Id">{{element.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="color">
+        <mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Color</mat-header-cell>
+        <mat-cell class="dc-content" *matCellDef="let element" data-label="Color">{{element.color}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="department">
+        <mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
+        <mat-cell class="dc-content" *matCellDef="let element" data-label="Department"> {{element.department}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="material">
+        <mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Material</mat-header-cell>
+        <mat-cell class="dc-content" *matCellDef="let element" data-label="Material">{{element.material}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="product_name">
+        <mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Product</mat-header-cell>
+        <mat-cell class="dc-content" *matCellDef="let element" data-label="Product">{{element.product_name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price_string">
+        <mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+        <mat-cell class="dc-content" *matCellDef="let element" data-label="Price">{{element.price_string}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="promo_code">
+        <mat-header-cell class="dc-label" *matHeaderCellDef mat-sort-header>Promo Code</mat-header-cell>
+        <mat-cell class="dc-content" *matCellDef="let element" data-label="Promo Code">{{element.promo_code}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="noData">
+        <mat-cell class="dc-label no-data-cell" *matCellDef="let element" [attr.colspan]="displayedCols.length">
+          <!-- <ng-container *ngIf="!(error$ | async) && !loading">
+            <span class="dc-content">No commerces</span>
+          </ng-container> -->
+          <ng-container *ngIf="(error$ | async) && !loading">
+            <span class="dc-label">There was a problem loading the data from the server</span>
+            <span class="dc-content">Error</span>
+            <span class="retry" (click)="retry()">Retry</span>
+          </ng-container>
+          <ng-container *ngIf="loading">
+            <span class="dc-label">Retrieving data...</span>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedCols, sticky: true"></mat-header-row>
+      <ng-container *ngIf="commercesCount && !loading">
+        <mat-row *matRowDef="let row; columns: displayedCols;" class="commerces-row"></mat-row>
+      </ng-container>
+      <ng-container *ngIf="!commercesCount || loading">
+        <mat-row *matRowDef="let row; columns: ['noData'];" class="no-data-row"></mat-row>
+      </ng-container>
+    </mat-table>
+
+    <mat-paginator [length]="commercesCount" [pageSize]="3" [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+  </div>
+</div>

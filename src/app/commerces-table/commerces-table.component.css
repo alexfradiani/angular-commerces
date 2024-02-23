@@ -1,0 +1,118 @@
+.commerces-content {
+  .table-header {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+
+    .header {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .table-container {
+    border: 1px solid var(--alto-color);
+    margin-top: 8px;
+
+    table {
+      font-family: 'Open sans';
+      color: var(--deep-blue-color);
+      line-height: 17px !important;
+      width: 100%;
+
+      tr.mat-header-row {
+        height: 35px;
+      }
+
+      tr.commerces-row:hover {
+        background-color: var(--off-water-color);
+      }
+
+      tr.commerces-row.mat-footer-row,
+      tr.commerces-row.mat-mdc-row {
+        height: 40px;
+        cursor: pointer;
+      }
+
+      .no-data-row {
+        height: 198px;
+
+        .no-data-cell {
+          text-align: center;
+        }
+
+        .no-data-cell>span {
+          display: block;
+          margin-top: 4px;
+        }
+
+        .no-data-cell>span.retry {
+          display: block;
+          color: var(--pine-green-color);
+          cursor: pointer;
+        }
+      }
+
+      th.mat-header-cell {
+        color: var(--blue-wood-color) !important;
+        background-color: var(catskill-white-color);
+        letter-spacing: 0.3px;
+      }
+
+      td.mat-mdc-cell {
+        color: var(--deep-blue-color);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .commerces-content {
+    .table-container {
+      .mat-mdc-table {
+        border: 0;
+        vertical-align: middle
+      }
+
+      .mat-mdc-header-row {
+        display: none;
+      }
+
+      .mat-mdc-table caption {
+        font-size: 1em;
+      }
+
+      .mat-mdc-table .mat-mdc-row {
+        border-bottom: 5px solid #ddd;
+        display: block;
+      }
+
+      .mat-mdc-table .mat-mdc-cell {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 1em;
+        text-align: right;
+        font-weight: bold;
+        height: 30px;
+        margin-bottom: 4%;
+      }
+
+      .mat-mdc-table .mat-mdc-cell:before {
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-weight: normal;
+
+        font-size: .85em;
+      }
+
+      .mat-mdc-table .mat-mdc-cell:last-child {
+        border-bottom: 0;
+      }
+
+      .mat-mdc-table .mat-mdc-cell:first-child {
+        margin-top: 4%;
+      }
+    }
+  }
+}

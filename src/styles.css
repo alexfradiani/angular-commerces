@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --deep-blue-color: #002D3F;
+  --blue-wood-color: #3B6475;
+  --pine-green-color: #007A7A;
+  --alto-color: #DCE2E5;
+  --off-water-color: #E5F8F8;
+  --catskill-white-color: #F3F6F9;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
