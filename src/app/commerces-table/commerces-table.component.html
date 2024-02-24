@@ -63,8 +63,7 @@
           </ng-container> -->
           <ng-container *ngIf="(error$ | async) && !loading">
             <span class="dc-label">There was a problem loading the data from the server</span>
-            <span class="dc-content">Error</span>
-            <span class="retry" (click)="retry()">Retry</span>
+            <button class="retry" (click)="retry()">Retry</button>
           </ng-container>
           <ng-container *ngIf="loading">
             <span class="dc-label">Retrieving data...</span>
