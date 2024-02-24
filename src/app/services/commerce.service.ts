@@ -6,6 +6,7 @@ import {
   CommercesResponse,
 } from '../store/models/Commerce';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class CommerceService {
   // original random-data service: currently has CORS issues
   // private apiUrl = 'https://random-data-api.com/api/commerce/random_commerce';
 
-  private apiUrl = 'http://localhost:3000/random_commerce';
+  private apiUrl = `${environment.apiUrl}/random_commerce`;
   constructor(private http: HttpClient) {}
 
   // Perform http request according to params from table component
